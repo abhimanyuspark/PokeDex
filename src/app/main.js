@@ -44,12 +44,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const displayPokemonList = (data) => {
     pokemonList.innerHTML = "";
     if (data.length === 0) {
-      notFoundElement.style.display = "block";
-      pokemonList.style.display = "none";
+      pokemonList.style.gridTemplateColumns = "1fr";
+      const dataItem = document.createElement("a");
+      dataItem.className = "data-item";
+      dataItem.style.textAlign = "center";
+      dataItem.textContent = "No pokemon data found";
+      pokemonList.appendChild(dataItem);
     } else {
-      notFoundElement.style.display = "none";
-      pokemonList.style.display = "grid";
       data.forEach((item) => {
+        pokemonList.style.gridTemplateColumns = "repeat(6, 1fr)";
         const dataItem = document.createElement("a");
         dataItem.className = "data-item";
         dataItem.href = `../pages/details.html?name=${item.name}`;
