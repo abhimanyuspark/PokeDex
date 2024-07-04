@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/styles.css" />
+    <script defer src="../app/main.js"></script>
+    <script defer src="../app/nav.js"></script>
+    <title>Pokedex</title>
+  </head>
+  <body>
+    
+    <nav id="nav"></nav>
+
+    <main class="container">
+      <div id="loading" class="loading">Loading...</div>
+      <div id="data-container" class="data-container">
+        <!-- search bar -->
+        <div class="search-container">
+          <input
+            type="search"
+            id="filter-pokemon"
+            class="search-input"
+            placeholder="Search list..."
+          />
+        </div>
+        <!-- Data will be rendered here -->
+        <div id="pokemon-list" class="pokemon-list"></div>
+      </div>
+      <div id="not-found" class="not-found">Data not found</div>
+    </main>
+  </body>
+</html>
