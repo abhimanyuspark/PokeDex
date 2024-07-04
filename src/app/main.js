@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const url = "https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0";
 
   const fetchData = () => {
-    loadingElement.style.display = "block";
+    loadingElement.style.display = "grid";
     container.style.display = "none";
     notFoundElement.style.display = "none";
 
@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
           container.style.display = "block";
           displayPokemonList(data);
           filterPokemon.focus();
+          filterPokemon.value = "";
           filterPokemon.addEventListener("input", (e) => {
             const value = e.target.value.toLowerCase();
             const filteredData = data.filter((item) =>

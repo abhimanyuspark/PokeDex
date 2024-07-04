@@ -37,6 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function submit(value) {
     if (searchInput.value === "") return;
     window.location.href = "../pages/details.html?name=" + value;
+    searchInput.value = "";
   }
 
   search.appendChild(searchInput);
@@ -44,4 +45,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   nav.appendChild(ul);
   nav.appendChild(search);
+
+  // Add event listener to window scroll event
+  window.addEventListener("scroll", () => {
+    const scrollPosition = window.scrollY;
+    if (scrollPosition >= 40) {
+      nav.style.backgroundColor = "black";
+    } else {
+      nav.style.backgroundColor = ""; // reset to original color
+    }
+  });
 });

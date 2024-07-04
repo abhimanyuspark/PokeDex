@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const url = "https://pokeapi.co/api/v2/pokemon";
 
   function getPokemon(pokeId) {
-    loadingElement.style.display = "block";
+    loadingElement.style.display = "grid";
     pokemonContainer.style.display = "none";
     notFoundElement.style.display = "none";
 
@@ -41,6 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
       image:
         pokemon.sprites.other.dream_world.front_default ||
         "../assets/Poké_Ball_icon.svg.png",
+      stats: pokemon.stats,
       types: pokemon.types.length > 0 ? pokemon.types : "No data found",
       moves: pokemon.moves,
       cries: pokemon.cries.legacy,
@@ -73,16 +74,18 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
           
         <div class="details-secound">
+          <!-- Details -->
+          <div class="details-secound-about" >
             <div class="secound w-h">
               <div>
                 <h3>Weight</h3>
                 <!-- hectograms -->
                 <p>${dataOBJ.weight / 10} kg</p>
               </div>
-
+              <hr/>
               <div>
-                <!-- decimetres -->
                 <h3>Height</h3>
+                <!-- decimetres -->
                 <p>${dataOBJ.height * 10} cm</p>
               </div>
             </div>
@@ -95,6 +98,12 @@ document.addEventListener("DOMContentLoaded", () => {
               <h3>Cry</h3>
               <audio controls src="${dataOBJ.cries}" ></audio>
             </div>
+          </div>
+
+          <!-- Stats -->
+          <div class="details-secound-stats">
+            <div id="stats"></div>
+          </div>
         </div>
 
       </div>
@@ -127,6 +136,19 @@ document.addEventListener("DOMContentLoaded", () => {
       name.style.background = data.types[poke.type.name];
       name.textContent = poke.type.name;
       types.appendChild(name);
+    });
+
+    const stats = document.getElementById("stats");
+    dataOBJ.stats.map((poke) => {
+      const name = document.createElement("a");
+      name.href = poke.stat.url;
+      name.innerHTML = `
+        
+          <p>${poke.stat.name}</p>
+          <p>${poke.base_stat}</p>
+        
+      `;
+      stats.appendChild(name);
     });
 
     // const searchMoves = document.getElementById("search-moves");
